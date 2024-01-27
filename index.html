@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+
+  <title>airports</title>
+  
+  <meta name="theme-color" content="#00695c">
+
+</head>
+
+<body>
+    
+  <ul id="add_to_list">
+   
+  </ul>
+
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+</body>
+
+</html>
+<script>
+  
+		function jsfun(url) {
+			window.open(url,'_blank');
+		}
+    
+     let sortObj = [
+      {
+        "title": "Fastlink",
+        "url": "https://flaff-871f8c3e78.flaff9.cc/auth/register"
+      },
+      {
+        "title": "老牛云",
+        "url": "https://www.laoniuyun.xyz/#/register"
+      },
+      {
+        "title": "土拨鼠",
+        "url": "https://tuboshu.biz/auth/register"
+      }
+     ]
+    
+      var out_li = '';
+      
+			for (item of sortObj) {
+				
+				out_li += ' <li>';
+				out_li += ' <a href="javascript:void(0);" onClick="jsfun(\''+item.url+'\')"><font color="blue" style="text-decoration: underline;">' + item.title +'</font> </a>'
+				out_li +='  </li> ';
+			} 
+		
+			document.getElementById('add_to_list').innerHTML = out_li;
+
+</script>
