@@ -1,58 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta charset="utf-8" />
+        <base href="/" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, user-scalable=yes"
+        />
 
-<head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta charset="utf-8">
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+        <title>XYZ</title>
 
-  <title>airports</title>
-  
-  <meta name="theme-color" content="#00695c">
+        <style>
+            p {white-space:nowrap}
+            ul, li { margin-left: 0; padding-left: 0; }
+        </style>
 
-</head>
+        <meta name="theme-color" content="#00695c" />
+    </head>
 
-<body>
-    
-  <ul id="add_to_list">
-   
-  </ul>
+    <body>
+        <h3><p>随机排序,请自行试用. 如无法访问,请自架梯</p></h3>
 
-  <noscript>Please enable JavaScript to continue using this application.</noscript>
-</body>
+        <ul id="add_to_list"></ul>
 
+        <h3><p>v2fly/xray 客户端</p></h3>
+        <ul>
+            <li>
+                <p>v2fly/xray Windows客户端 v2rayN</p>
+                <blockquote>
+                    <p>
+                        <a
+                            href="https://github.com/2dust/v2rayN/releases"
+                            target="_blank"
+                        >
+                            v2rayN
+                        </a>
+                    </p>
+                </blockquote>
+            </li>
+
+            <li>
+                <p>xray Android App v2rayNG</p>
+                <blockquote>
+                    <p>
+                        <a
+                            href="https://github.com/2dust/v2rayNG/releases"
+                            target="_blank"
+                        >
+                            v2rayNG
+                        </a>
+                    </p>
+                    <p>
+                        <a
+                            href="https://play.google.com/store/apps/details?id=com.v2ray.ang"
+                            target="_blank"
+                            >Google Play</a
+                        >
+                    </p>
+                </blockquote>
+            </li>
+            <li>
+                <p>v2fly Android App v2flyNG</p>
+                <blockquote>
+                    <p>
+                        <a
+                            href="https://github.com/2dust/v2flyNG/releases"
+                            target="_blank"
+                        >
+                            v2flyNG
+                        </a>
+                    </p>
+                    <p>
+                        <a
+                            href="https://play.google.com/store/apps/details?id=com.v2ray.v2fly"
+                            target="_blank"
+                            >Google Play v2flyNG (下载此app可以捐赠开发者)
+                        </a>
+                    </p>
+                </blockquote>
+            </li>
+        </ul>
+
+        <h3><p>clash 客户端</p></h3>
+        <ul>
+            <li>
+                <p>clash Windows客户端 clashN</p>
+                <blockquote>
+                    <p>
+                        <a
+                            href="https://github.com/2dust/clashN/releases"
+                            target="_blank"
+                        >
+                            clashN
+                        </a>
+                    </p>
+                </blockquote>
+            </li>
+        </ul>
+        <noscript
+            >Please enable JavaScript to continue using this
+            application.</noscript
+        >
+    </body>
 </html>
 <script>
-  
-		function jsfun(url) {
-			window.open(url,'_blank');
-		}
-    
-     let sortObj = [
-      {
-        "title": "Fastlink",
-        "url": "https://flaff-871f8c3e78.flaff9.cc/auth/register"
-      },
-      {
-        "title": "老牛云",
-        "url": "https://www.laoniuyun.xyz/#/register"
-      },
-      {
-        "title": "土拨鼠",
-        "url": "https://tuboshu.biz/auth/register"
-      }
-     ]
-    
-      var out_li = '';
-      
-			for (item of sortObj) {
-				
-				out_li += ' <li>';
-				out_li += ' <a href="javascript:void(0);" onClick="jsfun(\''+item.url+'\')"><font color="blue" style="text-decoration: underline;">' + item.title +'</font> </a>'
-				out_li +='  </li> ';
-			} 
-		
-			document.getElementById('add_to_list').innerHTML = out_li;
 
+    function jsfun(a) {
+    			var url = window.atob(a);
+    			window.open(url,'_blank');
+    		}
+
+    		function jsfunb(a) {
+    			var url = window.atob(a);
+    			window.location.href = url;
+    		}
+
+         function Random(min, max) {
+    			return Math.round(Math.random() * (max - min)) + min;
+    		}
+
+    		function compare(property){
+    			 return function(obj1,obj2){
+    				 var value1 = obj1[property];
+    				 var value2 = obj2[property];
+    				 return value2 - value1;
+    			 }
+    		}
+
+            function loadMy(){
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.open('GET', 'converted_nodelist_unicode.json?a=b'+Math.floor(Math.random() * 1000 + 1), false);
+        xhttp.onreadystatechange = function() {
+            if (xhttp.status == 200 && xhttp.readyState == 4) {
+
+                var infoObj = JSON.parse(xhttp.response)
+
+                for (item of infoObj) {
+                    item.mon = Random(0,item.mon);
+                }
+               // var sortObj = infoObj.sort(compare("mon"));
+                var sortObj = infoObj;
+
+                var out_li = '';
+
+                for (item of sortObj) {
+                    
+                    if(item.updated) {
+                        out_li += ' <li><p>' + item.desp + item.mon + '</p><blockquote><p>';
+                        out_li += ' <a href="javascript:void(0);" onClick="jsfun(\''+item.url+'\')"><font color="#FF0000">新页面打开</font> </a>&nbsp;&nbsp;&nbsp;&nbsp;'
+                        out_li += ' <a href="javascript:;" onClick="jsfunb(\''+item.url+'\');return false;"> 本页面打开  </a>'
+                        out_li +=' </p></blockquote></li> ';
+                    } else {
+                        console.log("Warning: item is not updated ", item.desp)
+                    }
+
+                }
+
+                document.getElementById('add_to_list').innerHTML = out_li;
+            }
+        };
+        xhttp.send();
+    }
+
+        window.onload = loadMy();
 </script>
